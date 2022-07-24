@@ -144,6 +144,7 @@ class _TrainerScreenState extends State<TrainerScreen> {
                     width: MediaQuery.of(context).size.width,
                     height: 48.0,
                     child: TextFormField(
+                      obscureText: true,
                       controller: firstNameController,
                       keyboardType: TextInputType.text,
                       style: const TextStyle(
