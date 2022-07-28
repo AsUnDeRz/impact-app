@@ -12,6 +12,8 @@ typedef JsonConvertFunction<T> = T Function(Map<String, dynamic> json);
 
 class JsonConvert {
   static final Map<String, JsonConvertFunction> _convertFuncMap = {
+    (RequestCreatePokemonEntity).toString():
+        RequestCreatePokemonEntity.fromJson,
     (GetPokemonEntity).toString(): GetPokemonEntity.fromJson,
     (GetPokemonPrevEvolution).toString(): GetPokemonPrevEvolution.fromJson,
     (GetPokemonNextEvolution).toString(): GetPokemonNextEvolution.fromJson,
@@ -91,6 +93,12 @@ class JsonConvert {
 
   //list is returned by type
   static M? _getListChildType<M>(List<Map<String, dynamic>> data) {
+    if (<RequestCreatePokemonEntity>[] is M) {
+      return data
+          .map<RequestCreatePokemonEntity>((Map<String, dynamic> e) =>
+              RequestCreatePokemonEntity.fromJson(e))
+          .toList() as M;
+    }
     if (<GetPokemonEntity>[] is M) {
       return data
           .map<GetPokemonEntity>(

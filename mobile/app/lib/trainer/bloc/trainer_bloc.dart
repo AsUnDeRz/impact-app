@@ -23,7 +23,7 @@ class TrainerBloc extends Bloc<TrainerEvent, TrainerState> {
     try {
       await _verifyTrainer(event.email, event.firstName);
       emit(state.copyWith(status: TrainerStatus.success));
-      await AppNavigator.push(Routes.pokedex);
+      await AppNavigator.replaceWith(Routes.pokedex);
       emit(state.copyWith(status: TrainerStatus.initial));
     } catch (error) {
       emit(state.copyWith(status: TrainerStatus.failure));

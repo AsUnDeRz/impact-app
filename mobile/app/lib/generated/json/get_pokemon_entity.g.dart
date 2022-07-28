@@ -1,6 +1,111 @@
 import 'package:app/generated/json/base/json_convert_content.dart';
 import 'package:app/models/get_pokemon_entity.dart';
 
+RequestCreatePokemonEntity $RequestCreatePokemonEntityFromJson(
+    Map<String, dynamic> json) {
+  final RequestCreatePokemonEntity requestCreatePokemonEntity =
+      RequestCreatePokemonEntity();
+  final double? id = jsonConvert.convert<double>(json['id']);
+  if (id != null) {
+    requestCreatePokemonEntity.id = id;
+  }
+  final String? num = jsonConvert.convert<String>(json['num']);
+  if (num != null) {
+    requestCreatePokemonEntity.num = num;
+  }
+  final String? name = jsonConvert.convert<String>(json['name']);
+  if (name != null) {
+    requestCreatePokemonEntity.name = name;
+  }
+  final String? img = jsonConvert.convert<String>(json['img']);
+  if (img != null) {
+    requestCreatePokemonEntity.img = img;
+  }
+  final List<String>? type =
+      jsonConvert.convertListNotNull<String>(json['type']);
+  if (type != null) {
+    requestCreatePokemonEntity.type = type;
+  }
+  final String? height = jsonConvert.convert<String>(json['height']);
+  if (height != null) {
+    requestCreatePokemonEntity.height = height;
+  }
+  final String? weight = jsonConvert.convert<String>(json['weight']);
+  if (weight != null) {
+    requestCreatePokemonEntity.weight = weight;
+  }
+  final String? candy = jsonConvert.convert<String>(json['candy']);
+  if (candy != null) {
+    requestCreatePokemonEntity.candy = candy;
+  }
+  final String? egg = jsonConvert.convert<String>(json['egg']);
+  if (egg != null) {
+    requestCreatePokemonEntity.egg = egg;
+  }
+  final List<double>? multipliers =
+      jsonConvert.convertListNotNull<double>(json['multipliers']);
+  if (multipliers != null) {
+    requestCreatePokemonEntity.multipliers = multipliers;
+  }
+  final List<String>? weaknesses =
+      jsonConvert.convertListNotNull<String>(json['weaknesses']);
+  if (weaknesses != null) {
+    requestCreatePokemonEntity.weaknesses = weaknesses;
+  }
+  final double? candyCount = jsonConvert.convert<double>(json['candy_count']);
+  if (candyCount != null) {
+    requestCreatePokemonEntity.candyCount = candyCount;
+  }
+  final double? spawnChance = jsonConvert.convert<double>(json['spawn_chance']);
+  if (spawnChance != null) {
+    requestCreatePokemonEntity.spawnChance = spawnChance;
+  }
+  final double? avgSpawns = jsonConvert.convert<double>(json['avg_spawns']);
+  if (avgSpawns != null) {
+    requestCreatePokemonEntity.avgSpawns = avgSpawns;
+  }
+  final String? spawnTime = jsonConvert.convert<String>(json['spawn_time']);
+  if (spawnTime != null) {
+    requestCreatePokemonEntity.spawnTime = spawnTime;
+  }
+  final List<GetPokemonPrevEvolution>? prevEvolution = jsonConvert
+      .convertListNotNull<GetPokemonPrevEvolution>(json['prev_evolution']);
+  if (prevEvolution != null) {
+    requestCreatePokemonEntity.prevEvolution = prevEvolution;
+  }
+  final List<GetPokemonNextEvolution>? nextEvolution = jsonConvert
+      .convertListNotNull<GetPokemonNextEvolution>(json['next_evolution']);
+  if (nextEvolution != null) {
+    requestCreatePokemonEntity.nextEvolution = nextEvolution;
+  }
+  return requestCreatePokemonEntity;
+}
+
+Map<String, dynamic> $RequestCreatePokemonEntityToJson(
+    RequestCreatePokemonEntity entity) {
+  final Map<String, dynamic> data = <String, dynamic>{};
+  data['id'] = entity.id;
+  data['num'] = entity.num;
+  data['name'] = entity.name;
+  data['img'] = entity.img;
+  data['type'] = entity.type;
+  data['height'] = entity.height;
+  data['weight'] = entity.weight;
+  data['candy'] = entity.candy;
+  data['egg'] = entity.egg;
+  data['multipliers'] = entity.multipliers;
+  data['weaknesses'] = entity.weaknesses;
+  data['candy_count'] = entity.candyCount;
+  data['spawn_chance'] = entity.spawnChance;
+  data['avg_spawns'] = entity.avgSpawns;
+  data['spawn_time'] = entity.spawnTime;
+  data['prev_evolution'] =
+      entity.prevEvolution?.map((v) => v.toJson()).toList();
+  data['next_evolution'] =
+      entity.nextEvolution?.map((v) => v.toJson()).toList();
+  return data;
+}
+
 GetPokemonEntity $GetPokemonEntityFromJson(Map<String, dynamic> json) {
   final GetPokemonEntity getPokemonEntity = GetPokemonEntity();
   final String? sId = jsonConvert.convert<String>(json['_id']);
@@ -80,6 +185,10 @@ GetPokemonEntity $GetPokemonEntityFromJson(Map<String, dynamic> json) {
   if (nextEvolution != null) {
     getPokemonEntity.nextEvolution = nextEvolution;
   }
+  final bool? newPokemon = jsonConvert.convert<bool>(json['newPokemon']);
+  if (newPokemon != null) {
+    getPokemonEntity.newPokemon = newPokemon;
+  }
   return getPokemonEntity;
 }
 
@@ -105,6 +214,7 @@ Map<String, dynamic> $GetPokemonEntityToJson(GetPokemonEntity entity) {
       entity.prevEvolution?.map((v) => v.toJson()).toList();
   data['next_evolution'] =
       entity.nextEvolution?.map((v) => v.toJson()).toList();
+  data['newPokemon'] = entity.newPokemon;
   return data;
 }
 

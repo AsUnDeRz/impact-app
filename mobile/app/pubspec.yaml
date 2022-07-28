@@ -40,6 +40,8 @@ dependencies:
   equatable: ^2.0.3
   stream_transform: ^2.0.0
   rounded_loading_button: ^2.1.0
+  bloc_concurrency: ^0.2.0
+  rotated_corner_decoration: ^2.0.0
 
 dev_dependencies:
   flutter_test:

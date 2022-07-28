@@ -4,13 +4,21 @@ const router = express.Router();
 const Model = require("../models/pokemon");
 
 //Create
-router.put("/collected", async (req, res) => {
+router.post("/collected", async (req, res) => {
   console.log(req.body);
-  const data = new Model(req.body);
   try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave);
+    const docCount = await Model.countDocuments({}).exec();
+    console.log(docCount);
+    var lastId = docCount + 1;
+    req.body.id = lastId;
+    req.body.num = lastId.toString();
+    const data = new Model(req.body);
+    data.save((err, dataToSave) => {
+      console.log(dataToSave._id);
+      res.status(200).json(dataToSave);
+    });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ message: error.message });
   }
 });
@@ -21,7 +29,7 @@ router.get("/getAll", async (req, res) => {
     const pageNumber = req.query.page;
     const nPerPage = req.query.limit;
     const data = await Model.find()
-      .sort({ _id: 1 })
+      .sort({ id: 1 })
       .skip(pageNumber > 0 ? (pageNumber - 1) * nPerPage : 0)
       .limit(nPerPage);
     res.json(data);
@@ -41,7 +49,7 @@ router.get("/getPokemon/:id", async (req, res) => {
 });
 
 //Update Pokemon by ID Method
-router.post("/update/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;

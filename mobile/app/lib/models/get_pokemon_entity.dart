@@ -3,6 +3,45 @@ import 'package:app/generated/json/get_pokemon_entity.g.dart';
 import 'dart:convert';
 
 @JsonSerializable()
+class RequestCreatePokemonEntity {
+  double? id;
+  String? num;
+  String? name;
+  String? img;
+  List<String>? type;
+  String? height;
+  String? weight;
+  String? candy;
+  String? egg;
+  List<double>? multipliers;
+  List<String>? weaknesses;
+  @JSONField(name: "candy_count")
+  double? candyCount;
+  @JSONField(name: "spawn_chance")
+  double? spawnChance;
+  @JSONField(name: "avg_spawns")
+  double? avgSpawns;
+  @JSONField(name: "spawn_time")
+  String? spawnTime;
+  @JSONField(name: "prev_evolution")
+  List<GetPokemonPrevEvolution>? prevEvolution;
+  @JSONField(name: "next_evolution")
+  List<GetPokemonNextEvolution>? nextEvolution;
+
+  RequestCreatePokemonEntity();
+
+  factory RequestCreatePokemonEntity.fromJson(Map<String, dynamic> json) =>
+      $RequestCreatePokemonEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => $RequestCreatePokemonEntityToJson(this);
+
+  @override
+  String toString() {
+    return jsonEncode(this);
+  }
+}
+
+@JsonSerializable()
 class GetPokemonEntity {
   @JSONField(name: "_id")
   String? sId;
@@ -29,6 +68,7 @@ class GetPokemonEntity {
   List<GetPokemonPrevEvolution>? prevEvolution;
   @JSONField(name: "next_evolution")
   List<GetPokemonNextEvolution>? nextEvolution;
+  bool? newPokemon;
 
   GetPokemonEntity();
 
